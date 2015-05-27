@@ -12,7 +12,7 @@ tJSON = (function(){
     // ***************************************
     // parsing Methods
     // ***************************************
-    var paths=[];  var objects=[]; //paths and objects are two arrays, that are organized parrallel for mapping
+    var objects=[]; //paths and objects are two arrays, that are organized parrallel for mapping
     var json='';
     function stringifyObject(o,path){
         json+='{';
@@ -95,7 +95,6 @@ tJSON = (function(){
             var n=false;
             if(path===undefined){
                 path =  '';
-                paths=[];
                 objects=[];
                 json='';
                 n=true;
@@ -106,9 +105,8 @@ tJSON = (function(){
                 case 'object':
                     var index=objects.indexOf(o);
                     if(index!==-1){
-                        json+=JSON.stringify(refName+paths[index]);
+                        json+=JSON.stringify(refName + getShortestPath(o));
                     }else{
-                        paths.push(path);
                         objects.push(o);
                         if(o instanceof Array){
                             stringifyArray(o,path);
