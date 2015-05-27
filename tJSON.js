@@ -8,8 +8,7 @@
  * but it can store and restore circular structures
  */
 tJSON = (function(){
-    var refName='_tJSONReference:';
-   
+    var refName='_tJSONR:';
     // ***************************************
     // parsing Methods
     // ***************************************
@@ -34,6 +33,34 @@ tJSON = (function(){
             tJSON.stringify(o[i],path+'.'+i);
         }
         json+=']';
+    }
+
+
+    var shortest;
+    function getShortestPath(o){
+        return shortest.paths[shortest.objs.indexOf(o)];
+    }
+    function prepareShortestPaths(obj,path,objs,paths){
+        if(typeof obj !== "object")return;
+
+        path = path || "";
+        objs=objs || [];// objs and paths are parrallel
+        paths= paths || []; 
+        var index = objs.indexOf(obj)
+        if(index === -1){
+            objs.push(obj)
+            paths.push(path)
+        }else{
+            if(path.length < paths[index].length){
+                paths[index] = path;
+            }
+            return {objs:objs,paths:paths};
+        }
+        for (var i in obj) {
+            prepareShortestPaths(obj[i], path.length ? path+"."+i : i, objs,paths)   
+        }
+        return {objs:objs,paths:paths};
+
     }
     // ***************************************
     // parsing Methods
@@ -72,6 +99,8 @@ tJSON = (function(){
                 objects=[];
                 json='';
                 n=true;
+                shortest = prepareShortestPaths(o);
+                var clearShortest=true;
             }
             switch(typeof o){
                 case 'object':
@@ -98,6 +127,7 @@ tJSON = (function(){
                 // clean up some memory
                 paths=[];  objects=[];
             }
+            if(clearShortest)shortest = undefined;
             return json;
         },
         parse:function(s){
@@ -108,20 +138,5 @@ tJSON = (function(){
             return o;
         }
     }
+})()
 
-/*
-console.clear();
-var a={};
-var b={a:a};
-var c={b:b};
-a.c=c;
-var i=3;
-a.i=i;
-b.i=i;
-c.i=i;
-a.b=a;
-arr=[a,b,c,i];
-c.arr=arr;
-console.log(tJSON.stringify(a));
-console.log('parse:',tJSON.parse((tJSON.stringify(a))))
-// */
