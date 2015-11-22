@@ -142,39 +142,4 @@ class TJSON{
 
 $tJSON = new TJSON();
 
-//echo $tJSON->stringify(['test',1,['value'=>4]]).'<br>';
-/*
-$a=[];
-$b=[];
-$a['b']=&$b;
-$b['a']=&$a;
-echo var_dump($a).'<br>';
-echo var_dump($b).'<br>';
-var_dump($a['b']['a']['b']['a']['b']['a']['b']['a']);
-*/
-
-$a=[];
-$b=['a' => [&$a]];
-//$c=['b' => &$b];
-$a['b'] = &$b;
-//$i=3;
-//$a['i'] = $i;
-//$b['i'] = $i;
-//$c['i'] = $i;
-//$a['i'] = $a;
-//$arr = [$a,$b,$c,$i];
-//$c['arr'] = $arr;
-//foreach($a as $i => $v){
-//echo '<br>'.$i.'<br>';
-//}
-echo 'stringify A: '.$tJSON->stringify($a)."\n";
-//echo 'parse: '.$tJSON->stringify($arr).'<br>';
-var_dump($tJSON->parse($tJSON->stringify($a)));//."\n";
-// */
-echo "\n test is array";
-echo "\n";
-echo "".is_object(new stdClass());
-
-echo "\n";
-
 ?>
