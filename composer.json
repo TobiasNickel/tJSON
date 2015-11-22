@@ -1,0 +1,7 @@
+{
+    "name": "nickeltobias/tcjson",
+    "description": "parse and stringify circular data structures, with compatible counterpart in Javascript",
+    "require": {
+        "php": ">=5.3.0"
+    }
+}
