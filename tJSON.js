@@ -2,16 +2,16 @@
  * author: Tobias Nickel
  * License: MIT, mach damit was du willst
  */
- 
+
 /**
  * Object like native JSON, it has the methods stringify and parse,
  * but it can store and restore circular structures
  */
 tJSON = (function(){
-    var refName='_tJSONReference:';
-   
+    var refName='_:';
+
     // ***************************************
-    // parsing Methods
+    // Stringify Methods
     // ***************************************
     var paths=[];  var objects=[]; //paths and objects are two arrays, that are organized parrallel for mapping
     var json='';
@@ -108,20 +108,5 @@ tJSON = (function(){
             return o;
         }
     }
-
-/*
-console.clear();
-var a={};
-var b={a:a};
-var c={b:b};
-a.c=c;
-var i=3;
-a.i=i;
-b.i=i;
-c.i=i;
-a.b=a;
-arr=[a,b,c,i];
-c.arr=arr;
-console.log(tJSON.stringify(a));
-console.log('parse:',tJSON.parse((tJSON.stringify(a))))
-// */
+})();
+if('object'!==typeof window){module.exports=tJSON;}

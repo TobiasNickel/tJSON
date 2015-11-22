@@ -1,0 +1,26 @@
+{
+  "name": "tcjson",
+  "version": "1.0.0",
+  "description": "like the native js JSON object, it provides the two methods strigify and parse.\r This lib is just like CircularJSON, but I guarantee the shortest possible JSON, that allow the same reproduction of your objects;",
+  "main": "tJSON.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TobiasNickel/tJSON.git"
+  },
+  "keywords": [
+    "json",
+    "circular",
+    "fast",
+    "small",
+    "datasharing"
+  ],
+  "author": "Tobias Nickel",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/TobiasNickel/tJSON/issues"
+  },
+  "homepage": "https://github.com/TobiasNickel/tJSON#readme"
+}
